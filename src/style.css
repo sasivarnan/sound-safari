@@ -1,0 +1,562 @@
+@import "./index.css";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Geist Variable", sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+p {
+  line-height: 1.65;
+}
+.app-header {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.wordmark {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+  background: none;
+  border: 0;
+  padding: 8px 0;
+}
+.wordmark span {
+  color: #75804c;
+}
+.app-header [data-slot="button"] {
+  min-height: 44px;
+  font-size: 13px;
+  gap: 8px;
+}
+.count {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+main {
+  max-width: 520px;
+  margin: auto;
+  padding: 8px 22px 40px;
+}
+.progress {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  padding: 0 0 22px;
+  margin: 8px 0 30px;
+  border-bottom: 1px solid var(--border);
+}
+.progress li {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.progress li span {
+  width: 21px;
+  height: 21px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+}
+.progress [aria-current="step"] {
+  color: var(--foreground);
+  font-weight: 500;
+}
+.progress [aria-current="step"] span {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+h1 {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1.2px;
+  line-height: 1.18;
+  margin: 12px 0 16px;
+}
+h2 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+.kicker {
+  font-size: 10px;
+  color: var(--muted-foreground);
+  letter-spacing: 1.3px;
+  font-weight: 500;
+  margin: 0;
+}
+.lead {
+  font-size: 16px;
+  color: var(--muted-foreground);
+  margin: 0 0 26px;
+  line-height: 1.65;
+}
+.record-area {
+  margin-top: 26px;
+}
+.record-symbol {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--secondary);
+  color: var(--primary);
+  margin: 0 auto 22px;
+}
+.record-symbol.recording {
+  background: #f3e8e4;
+  color: #92412c;
+}
+.record-symbol span {
+  font-size: 24px;
+  text-align: center;
+  line-height: 1;
+}
+.record-symbol small {
+  display: block;
+  font-size: 9px;
+  margin-top: 5px;
+}
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 20px 0;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+.consent input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin: 2px 0 0;
+  accent-color: var(--primary);
+}
+.primary-action,
+.secondary-action {
+  width: 100%;
+  min-height: 48px;
+  gap: 8px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+.secondary-action {
+  margin-top: 12px;
+}
+.status {
+  font-size: 13px;
+  padding: 12px;
+  background: var(--secondary);
+  border-radius: 8px;
+  margin: 14px 0 0;
+}
+.download-note {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  margin: 12px 8px 0;
+  text-align: center;
+}
+.manual-section {
+  margin: 22px 0 0;
+  border-top: 1px solid var(--border);
+  padding: 14px 0 0;
+}
+.manual-section > button {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 0;
+  font-size: 13px;
+}
+.help {
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+.sound-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0 0;
+}
+.sound-choices button {
+  min-height: 46px;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  padding: 0 12px;
+}
+.safety {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  margin: 28px 0 18px;
+}
+.privacy {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+summary {
+  cursor: pointer;
+  font-size: 12px;
+  min-height: 32px;
+  line-height: 1.8;
+}
+.privacy summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted-foreground);
+}
+.privacy summary::after {
+  content: "+";
+  margin-left: auto;
+}
+.privacy[open] summary::after {
+  content: "−";
+}
+details p {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.sound-summary {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 30px;
+}
+.sound-summary > span {
+  padding: 6px 10px;
+  border-radius: 7px;
+  background: var(--secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+.sound-summary small {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.model-results {
+  margin: -18px 0 28px;
+}
+.model-results summary {
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.model-results ul {
+  padding: 0;
+  list-style: none;
+}
+.model-results li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.listening-time {
+  font-size: 60px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -3px;
+  font-weight: 400;
+  text-align: center;
+  padding: 10px 0 26px;
+}
+.timer-hint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted-foreground);
+  min-height: 48px;
+}
+.change-sound {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+}
+.note-label {
+  font-size: 12px;
+}
+.note-label span {
+  color: var(--muted-foreground);
+}
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 145px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+  margin-top: 9px;
+}
+.back-link {
+  display: flex;
+  margin: 12px auto 0;
+  min-height: 44px;
+}
+.finished {
+  padding: 25px 0 10px;
+}
+.finished > svg {
+  color: #697541;
+  margin-bottom: 24px;
+}
+.finished > button:last-child {
+  display: flex;
+  margin: 12px auto 0;
+  min-height: 44px;
+}
+.journal {
+  padding-top: 32px;
+}
+.empty {
+  padding: 32px 0;
+}
+.empty p {
+  color: var(--muted-foreground);
+  margin-bottom: 22px;
+}
+.empty button {
+  min-height: 44px;
+}
+.journal-entry {
+  border-top: 1px solid var(--border);
+  padding: 22px 0;
+}
+.journal-entry:first-of-type {
+  margin-top: 28px;
+}
+.entry-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.journal-entry p {
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.journal-entry small {
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+.journal-actions {
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+}
+.journal-actions button {
+  min-height: 44px;
+}
+.skip {
+  position: fixed;
+  top: -100px;
+  left: 12px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 12px;
+  z-index: 10;
+}
+.skip:focus {
+  top: 12px;
+}
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+main:focus {
+  outline: none;
+}
+@media (min-width: 640px) {
+  .app-header {
+    padding-top: 30px;
+    padding-bottom: 24px;
+  }
+  main {
+    padding-top: 20px;
+  }
+  h1 {
+    font-size: 36px;
+  }
+  .progress {
+    margin-bottom: 40px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Small cues for actions; screen transitions never run on timer ticks or typing. */
+[data-slot="button"] {
+  transition:
+    background-color 120ms ease,
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+[data-slot="button"]:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+.consent input {
+  transition: box-shadow 120ms ease;
+}
+.consent input:checked {
+  box-shadow: 0 0 0 3px var(--secondary);
+}
+.record-symbol {
+  position: relative;
+}
+.record-symbol.recording::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  animation: recording-breath 1.8s ease-in-out infinite;
+}
+@keyframes recording-breath {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.06);
+  }
+}
+.sound-choices {
+  animation: choices-in 140ms ease-out;
+}
+@keyframes choices-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.listening-time {
+  position: relative;
+}
+.listening-time::after {
+  content: "";
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: var(--listening-progress, 0%);
+  height: 2px;
+  background: var(--primary);
+  transition: width 400ms linear;
+}
+.finished > svg {
+  animation: completed-in 180ms ease-out;
+}
+@keyframes completed-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+main {
+  view-transition-name: activity;
+}
+:root {
+  view-transition-name: none;
+}
+::view-transition-old(activity) {
+  animation: activity-out 100ms ease-in both;
+}
+::view-transition-new(activity) {
+  animation: activity-in 160ms ease-out both;
+}
+@keyframes activity-out {
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+@keyframes activity-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  ::view-transition-old(activity),
+  ::view-transition-new(activity) {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main[data-view-transitions="fallback"] > section {
+    animation: activity-in 160ms ease-out;
+  }
+}
+/* Transition snapshots must not intercept taps on the next screen. */
+::view-transition {
+  pointer-events: none;
+}
+
+.listening-time:focus { outline: none; }
