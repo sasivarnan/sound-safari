@@ -1,14 +1,3 @@
----
-title: SoundSafari
-emoji: 🌿
-colorFrom: green
-colorTo: gray
-sdk: docker
-app_port: 7860
-license: mit
-short_description: A private, on-device outdoor listening exercise
----
-
 # SoundSafari
 
 Pause, listen, notice. A responsive outdoor listening journal with optional, on-device AI sound suggestions.
@@ -94,8 +83,10 @@ Screen changes use native View Transitions when supported (100–160 ms), with a
 
 Tests include store guards, stale results, opt-in persistence boundaries, and unsupported/reduced-motion/failed native transition paths, in addition to the user-flow tests.
 
-## Hugging Face Spaces
+## Hosting on OpenAI Sites
 
-Deploy this repository as a public **Docker Space** using the included Dockerfile and free CPU hardware. The container serves static assets on port 7860; all audio inference still runs in the visitor’s browser. No model or audio runs on the hosting server.
+The production app is deployed as static assets on OpenAI Sites. The tracked `.openai/hosting.json` identifies the Site and declares `dist` as the static output directory. Build with `npm run build`, then use the Sites source workflow to synchronize source, package the build, and deploy a saved version. All audio inference runs in the visitor’s browser; no model or audio runs on the hosting server.
 
-For microphone recording, open the Space’s direct application URL in a top-level HTTPS tab if the embedded preview does not grant microphone access. Permission denial always leaves manual listening available.
+For microphone recording, open the deployed HTTPS application in a top-level tab if an embedded preview does not grant microphone access. Permission denial always leaves manual listening available.
+
+The included Dockerfile is an optional generic static-serving alternative on port 7860. Hosting-provider plans and prices vary; free Docker compute is not assumed.
